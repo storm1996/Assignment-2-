@@ -57,7 +57,7 @@ void drawPaddle()
 {
   paddle.render();
   paddle.move(mouseX, paddleY);
-  paddle.collidesWith(gameBall);  
+  //paddle.collidesWith(gameBall);  
 }
 
 void drawLose() 
@@ -66,3 +66,5 @@ void drawLose()
   textSize(40);
   text("You lose!", width/2-100, height/2);
 }
+
+

@@ -1,9 +1,9 @@
 class Brick
 {
-  int brickX;
-  int brickY;
-  int brickWidth;
-  int brickHeight;
+  float brickX;
+  float brickY;
+  float brickWidth;
+  float brickHeight;
   color brickColour;
   
   Brick(float x, float y, float Width, float Height, color Colour)
@@ -22,9 +22,10 @@ void render()
   fill(brickColour);
   rect(brickX, brickY, brickWidth, brickHeight);
 }
-void update()
+void move(int X, int Y) 
 {
-  
+  brickX=X-brickWidth/2;
+  brickY=Y-brickHeight/2;
 }
 
 
