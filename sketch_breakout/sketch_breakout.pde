@@ -17,12 +17,22 @@ float startY=heightScreen/2;
 color ballColour= color(255, 0, 0);
 Ball gameBall= new Ball(startX, startY, diameter, ballColour);
 
+//Paddle 
+int paddleWidth = 50;
+int paddleHeight = 20;
+int paddleX = widthScreen/2;
+int paddleY = heightScreen - 50; 
+color paddleColour = color(215, 14, 195);
+Brick paddle= new Brick(paddleX, paddleY, paddleWidth, paddleHeight, paddleColour);
+
+
 void draw() 
 {
   if (lives>0) 
   {
     background(255); 
     drawBall();
+    drawPaddle();
   } 
   else 
   {
@@ -42,7 +52,14 @@ void drawBall()
     gameBall.move(width/2, height/2);
   }
 }
-  
+
+void drawPaddle()
+{
+  paddle.render();
+  paddle.move(mouseX, paddleY);
+  paddle.collidesWith(gameBall);  
+}
+
 void drawLose() 
 {
   fill(0);
