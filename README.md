@@ -1,2 +1,2 @@
 # Assignment-2-
-Stick man shooting game 
+simple breakout game 
