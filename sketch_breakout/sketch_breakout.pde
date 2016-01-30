@@ -10,6 +10,7 @@ int heightScreen= 500;
 int score=0;
 int lives=3;
 
+
 //Ball
 int diameter= 20;
 float startX=random(widthScreen);
@@ -18,13 +19,20 @@ color ballColour= color(255, 0, 0);
 Ball gameBall= new Ball(startX, startY, diameter, ballColour);
 
 //Paddle 
-int paddleWidth = 50;
-int paddleHeight = 20;
+int paddleWidth = 100;
+int paddleHeight = 10;
 int paddleX = widthScreen/2;
 int paddleY = heightScreen - 50; 
 color paddleColour = color(215, 14, 195);
 Brick paddle= new Brick(paddleX, paddleY, paddleWidth, paddleHeight, paddleColour);
 
+//Bricks
+int brickWidth = 150;
+int brickHeight = 30;
+int brickX = widthScreen/2;
+int brickY = 50; 
+color brickColour = color(215, 14, 195);
+Brick brick= new Brick(brickX, brickY, brickWidth, brickHeight, brickColour);
 
 void draw() 
 {
@@ -33,6 +41,7 @@ void draw()
     background(255); 
     drawBall();
     drawPaddle();
+    drawBrick();
   } 
   else 
   {
@@ -56,8 +65,14 @@ void drawBall()
 void drawPaddle()
 {
   paddle.render();
-  paddle.move(mouseX, paddleY);
-  //paddle.collidesWith(gameBall);  
+  paddle.move(mouseX, paddleY);  
+  paddle.hitBall(gameBall);  
+}
+
+void drawBrick()
+{
+  brick.render();  
+  brick.vanish(gameBall);
 }
 
 void drawLose() 

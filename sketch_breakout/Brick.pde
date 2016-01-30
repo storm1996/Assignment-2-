@@ -25,9 +25,24 @@ void render()
 void move(int X, int Y) 
 {
   brickX=X-brickWidth/2;
-  brickY=Y-brickHeight/2;
+
 }
 
+void hitBall( Ball game)
+{
+   if( (game.ballX > mouseX -paddleWidth/2) && (game.ballX < mouseX + paddleWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
+   {
+     game.speedY=game.speedY * -1;
+   }
+}
+
+void vanish( Ball game)
+{
+   if( (game.ballX > brickX -paddleWidth/2) && (game.ballX < brickX + paddleWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
+   {
+     game.speedY=game.speedY * -1;
+   }
+}
 
 }
   

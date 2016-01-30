@@ -56,7 +56,7 @@ void move(int X, int Y)
     } 
     else if (ballY<diameter/2)
     {
-        speedY=speedX * -1;
+        speedY=speedY * -1;
     }
     return false;
   }
