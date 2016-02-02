@@ -22,6 +22,7 @@ void render()
   fill(brickColour);
   rect(brickX, brickY, brickWidth, brickHeight);
 }
+
 void move(int X, int Y) 
 {
   brickX=X-brickWidth/2;
@@ -30,19 +31,19 @@ void move(int X, int Y)
 
 void hitBall( Ball game)
 {
-   if( (game.ballX > mouseX -paddleWidth/2) && (game.ballX < mouseX + paddleWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
+   if( (game.ballX > mouseX -brickWidth/2) && (game.ballX < mouseX + brickWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
    {
      game.speedY=game.speedY * -1;
    }
 }
 
-void vanish( Ball game)
+/*void vanish( Ball game)
 {
    if( (game.ballX > brickX -paddleWidth/2) && (game.ballX < brickX + paddleWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
    {
      game.speedY=game.speedY * -1;
    }
-}
+}*/
 
 }
   
