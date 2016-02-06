@@ -1,49 +1,35 @@
-class Brick
+class Brick extends GameObject
 {
-  float brickX;
-  float brickY;
-  float brickWidth;
-  float brickHeight;
-  color brickColour;
-  
-  Brick(float x, float y, float Width, float Height, color Colour)
+  color paddle_Colour;
+  Brick()
   {
-    brickX = x;
-    brickY = y;
-    brickWidth = Width;
-    brickHeight = Height;
-    brickColour = Colour;
-    
+    super(widthScreen/2, heightScreen-50, 50, 50);  
   }
   
+  Brick(int paddle_x, int paddle_y, int paddle_width, int paddle_height, color colour)
+  {
+    super(widthScreen/2, heightScreen-50, 50, 50); 
+    this.paddle_Colour = colour; 
+    this.x = paddle_x;
+    this.y = paddle_y;
+    this.w = paddle_width;
+    this.h = paddle_height;
+  }
+  
+  void update(int X, int Y, Ball game)
+  { 
+    x = X-w/2;
+    if( (game.ballX > mouseX -w/2) && (game.ballX < mouseX + w/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
+   {
+     game.speedY=game.speedY * -1;
+   }
+  }
 void render()
 {
   noStroke();
-  fill(brickColour);
-  rect(brickX, brickY, brickWidth, brickHeight);
+  fill(paddle_Colour);
+  rect(x, y, w, h);
 }
-
-void move(int X, int Y) 
-{
-  brickX=X-brickWidth/2;
-
-}
-
-void hitBall( Ball game)
-{
-   if( (game.ballX > mouseX -brickWidth/2) && (game.ballX < mouseX + brickWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
-   {
-     game.speedY=game.speedY * -1;
-   }
-}
-
-/*void vanish( Ball game)
-{
-   if( (game.ballX > brickX -paddleWidth/2) && (game.ballX < brickX + paddleWidth/2) && (game.ballY > heightScreen - 52) && (game.ballY < heightScreen - 39 ) )
-   {
-     game.speedY=game.speedY * -1;
-   }
-}*/
 
 }
   
