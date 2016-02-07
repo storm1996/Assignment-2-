@@ -12,6 +12,8 @@ int widthScreen= 500;
 int heightScreen= 500;
 int score=0;
 int lives=3;
+int option = 0;
+boolean run = false;
 
 int numberBlocks= 3;
 int numberOfBlockRows= 6;
@@ -22,7 +24,7 @@ color blockColours[]= {color(255, 0, 0), color(255, 125, 0), color(255, 255, 0),
   color(0, 255, 0), color(0, 0, 255), color(125, 0, 125), color(255, 0, 0), 
   color(255, 125, 0), color(255, 255, 0), color(0, 255, 0), color(0, 0, 255)};
 color blockColour= color(255, 255, 0);
-//ArrayList<Block> BlockLayers= new ArrayList<Block>();
+ArrayList<Block> BlockLayers= new ArrayList<Block>();
 
 Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, color(255, 0, 0));
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
@@ -31,18 +33,30 @@ void draw()
 {
   background(255);
 
-  if (lives>0) 
+  if (option == 0)
   {
-    drawBall(); 
-    for (int i = gameObjects.size() - 1; i >= 0; i --)
+    //draw menu
+  } 
+  
+  else
+  {
+    if (run = true);
     {
-      GameObject go = gameObjects.get(i);
-      go.render();
-      go.update(mouseX, heightScreen - 50, gameBall);
+      if (lives>0) 
+      {
+        drawBall(); 
+        for (int i = gameObjects.size() - 1; i >= 0; i --)
+        {
+          GameObject go = gameObjects.get(i);
+          // Block bo = BlockLayers.get(i);
+          go.render();
+          go.update(mouseX, heightScreen - 50, gameBall);
+        }
+      } else 
+      {
+        drawLose();
+      }
     }
-  } else 
-  {
-    drawLose();
   }
 }
 
@@ -73,7 +87,41 @@ void setupBlocks()
     {
       blockX = i*(blockWidth+10);
       blockY = 20+j*(blockHeight+10);
-      gameObjects.add(new Block(blockX, blockY, blockWidth, blockHeight, blockColours[j]));
+      Block b = new Block(blockX, blockY, blockWidth, blockHeight, blockColours[j]);
+      gameObjects.add(b);
+      BlockLayers.add(b);
     }
   }
+  //Block g = new Block(game.ballX, game.ballY, game.diameter, game.diameter, game.ballColour);
+  //gameObjects.add(g);
+  //BlockLayers.add(g);
+}
+
+void keyPressed() // Contains all the controls
+{
+  if (key == '1' && option==0)
+  {
+    option = 1;
+    gameBall.speedY = 7;
+    run = true;
+  }//end if
+  
+  if (key == '2' && option==0)
+  {
+    option = 2;
+    gameBall.speedY = 5;
+    run = true;
+  }//end if
+  
+  if (key == '3' && option==0)
+  {
+    option = 3;
+    gameBall.speedY = 3;
+    run = true;
+  }//end if
+  
+  if (key == 'm')
+  {
+    option = 0;
+  }//end if
 }

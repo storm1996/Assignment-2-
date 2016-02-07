@@ -1,6 +1,6 @@
 abstract class GameObject
 {
-  int x, y, w, h;
+  float x, y, w, h;
 
   GameObject()
   {

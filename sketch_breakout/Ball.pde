@@ -1,11 +1,11 @@
-class Ball 
+class Ball
 {
   float ballX;
   float ballY;
   float diameter;
   color ballColour;
-  float speedY= random(1,10);
-  float speedX= random(-10, 10);
+  float speedY;
+  float speedX= random(1,10);
   
   //constructor
   Ball(float x, float y, int Width, color Colour)
@@ -34,8 +34,8 @@ void move(int X, int Y)
 {
   ballX=X;
   ballY= Y;
-  speedY= random(1,10);
   speedX= random(-10, 10);
+  speedY= speedY*-1;
 }
   
   //this does the bounce
