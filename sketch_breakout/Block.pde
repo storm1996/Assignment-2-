@@ -3,12 +3,12 @@ class Block extends GameObject
   color block_Colour;
   Block()
   {
-    super(widthScreen/2, heightScreen-50, 50, 50);
+    super(widthScreen/2, heightScreen-50, 50, 50, 0);
   }
 
   Block(float block_x, float block_y, float block_width, float block_height, color colour)
   {
-    super(widthScreen/2, heightScreen-50, 50, 50); 
+    super(widthScreen/2, heightScreen-50, 50, 50, 0); 
     this.block_Colour = colour; 
     this.x = block_x;
     this.y = block_y;
@@ -16,7 +16,7 @@ class Block extends GameObject
     this.h = block_height;
   }
 
-  void update(int X, int Y, Ball game)
+  void update(int X, int Y, float ballx, float bally, float speedY)
   {
   }
 
@@ -31,4 +31,16 @@ class Block extends GameObject
     fill(block_Colour);
     rect(x, y, w, h);
   }
+
+
+void move(int W, int H)
+{
+}
+
+int wallCollision()
+{
+  int y;
+  return  y = 3 ;
+}
+
 }

@@ -1,63 +1,68 @@
-class Ball
+class Ball extends GameObject
 {
-  float ballX;
-  float ballY;
-  float diameter;
   color ballColour;
-  float speedY;
-  float speedX= random(1,10);
+  float speedX;
   
-  //constructor
-  Ball(float x, float y, int Width, color Colour)
+   Ball()
   {
-     ballX= x;
-     ballY= y;
-     diameter= Width;
-     ballColour= Colour; 
+    super(widthScreen/2, heightScreen-50, 50, 50, 0);
   }
-   //this draws the ball on the screen
-void render()
-{
-  noStroke();
-  fill(ballColour);
-  ellipse(ballX, ballY, diameter, diameter);
-}
-  
-  //this changes the ball to the speed;
-void update() 
-{
-  ballX+=speedX;
-  ballY+=speedY;
-}
 
-void move(int X, int Y) 
-{
-  ballX=X;
-  ballY= Y;
-  speedX= random(-10, 10);
-  speedY= speedY*-1;
-}
-  
-  //this does the bounce
-  boolean wallCollision() 
+  //constructor
+  Ball(float x, float y, int Width, int Height, color Colour, float speedY, float speedX)
   {
-    if (ballX>width-diameter/2) 
+    super(widthScreen/2, heightScreen-50, 50, 50, 0); 
+    this.ballColour = Colour; 
+    this.x = x;
+    this.y = y;
+    this.w = Width;
+    this.h = Height;
+    this.speedY = speedY;
+    this.speedX = speedX;
+    
+  }
+  //this draws the ball on the screen
+  void render()
+  {
+    noStroke();
+    fill(ballColour);
+    ellipse(x, y, w, h);
+  }
+
+  //this changes the ball to the speed;
+  void update(int X, int Y, float ballx, float bally, float speedY) 
+  {
+    x+=speedX;
+    y+=speedY;
+  }
+
+  void move(int X, int Y) 
+  {
+    x=X;
+    y= Y;
+    speedX= random(-10, 10);
+    speedY= speedY*-1;
+  }
+
+  //this does the bounce
+  int wallCollision() 
+  {
+    int var = 1;
+    if (x>width-w/2) 
     {
-        speedX= speedX * -1; 
-    } 
-    else if (ballX<diameter/2) 
+      speedX= speedX * -1;
+    } else if (x<w/2) 
     {
-       speedX= speedX * -1;
+      speedX= speedX * -1;
     } 
-    if (ballY>height-diameter/2) 
+    if (y>height-w/2) 
     { 
-        speedY= speedY * -1;
-        return true; 
-    } 
-    else if (ballY<diameter/2)
+      speedY= speedY * -1;
+      return var = 1;
+    } else if (y<w/2)
     {
-        speedY=speedY * -1;
+      speedY=speedY * -1;
     }
-    return false;
+    return var = 0;
   }
 }
