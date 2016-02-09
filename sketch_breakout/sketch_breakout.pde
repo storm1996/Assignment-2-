@@ -50,9 +50,6 @@ void draw()
           println(gameObjects.get(i));
           if (go instanceof Ball)
           {
-            go.render();
-            go.draw(mouseX, heightScreen - 50, go.x, go.y, go.speedY);
-            //checkCollisions();
             if (go.wallCollision()) 
             {
               lives--;
@@ -81,7 +78,9 @@ void draw()
 
               if (brick instanceof Brick)
               {
-                brick.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
+                ball.update(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedX, ball.speedY);
+                ball.render();
+                ball.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
               }//brick if
             }//end for j
           }//end go

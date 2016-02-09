@@ -30,9 +30,32 @@ class Ball extends GameObject
   }
 
   //this changes the ball to the speed;
-  void update(int X, int Y, float ballx, float bally, float speedY) 
+  void update(int X, int Y, float ballx, float bally, float speedX, float speedY) 
   {
-    
+    for (int i = gameObjects.size ()-1; i>=0; i--)
+    {
+      GameObject ball = gameObjects.get(i);
+
+      if (ball instanceof Ball)
+      {
+        for (int j = gameObjects.size ()-1; j>=0; j--)
+        {
+          GameObject brick = gameObjects.get(j);
+
+          if (brick instanceof Brick)
+          {
+            //if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+            if ((ballx > mouseX) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+            {
+              speedY= -(speedY);
+              //gameObjects.remove(brick);
+            }
+          }//end if
+          x+=speedX;
+          y+=speedY;
+        }//end for
+      }//end if
+    }//end for
   }
 
   void move(int X, int Y) 
@@ -66,8 +89,6 @@ class Ball extends GameObject
 
   void draw(int X, int Y, float ballx, float bally, float speed)
   {
-    x+=speedX;
-    y+=speedY;
   }
 }
 

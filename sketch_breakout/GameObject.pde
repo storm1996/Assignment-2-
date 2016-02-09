@@ -16,7 +16,7 @@ abstract class GameObject
     this.speedY = speedY;
   }
 
-  abstract void update(int X, int Y, float ballx, float bally, float speedY);  
+  abstract void update(int X, int Y, float ballx, float bally, float speedX, float speedY);  
   abstract void render();
   abstract boolean wallCollision();
   abstract void move(int W, int H);

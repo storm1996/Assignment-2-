@@ -16,7 +16,7 @@ class Block extends GameObject
     this.h = block_height;
   }
 
-  void update(int X, int Y, float ballx, float bally, float speedY)
+  void update(int X, int Y, float ballx, float bally, float speedX, float speedY)
   {
   }
 
