@@ -16,7 +16,7 @@ class Block extends GameObject
     this.h = block_height;
   }
 
-  void update(int X, int Y, float ballx, float bally, float speedX, float speedY)
+  void update(int X, int Y, float ballx, float bally,  float speedY)
   {
   }
 
@@ -44,25 +44,25 @@ boolean wallCollision()
 
 void draw(int X, int Y, float ballx, float bally, float speedY)
 {
-      for (int i = gameObjects.size ()-1; i>=0; i--)
-    {
-      GameObject ball = gameObjects.get(i);
-
-      if (ball instanceof Ball)
-      {
-        for (int j = gameObjects.size ()-1; j>=0; j--)
-        {
-          GameObject block = gameObjects.get(j);
-
-          if (block instanceof Block)
-          {
-            if (ball.x > block.x && ball.x<block.x + block.w && ball.y + 40> block.y && ball  .y + 40 < block.y + block.h)
-            {
-              gameObjects.remove(i);
-            }
-          }//end if
-        }//end for
-      }//end if
-    }//end for
+//      for (int i = gameObjects.size ()-1; i>=0; i--)
+//    {
+//      GameObject ball = gameObjects.get(i);
+//
+//      if (ball instanceof Ball)
+//      {
+//        for (int j = gameObjects.size ()-1; j>=0; j--)
+//        {
+//          GameObject block = gameObjects.get(j);
+//
+//          if (block instanceof Block)
+//          {
+//            if (ball.x > block.x && ball.x<block.x + block.w && ball.y + 40> block.y && ball  .y + 40 < block.y + block.h)
+//            {
+//              gameObjects.remove(i);
+//            }
+//          }//end if
+//        }//end for
+//      }//end if
+//    }//end for
 }
 }

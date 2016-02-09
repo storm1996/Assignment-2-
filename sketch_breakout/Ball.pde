@@ -30,32 +30,32 @@ class Ball extends GameObject
   }
 
   //this changes the ball to the speed;
-  void update(int X, int Y, float ballx, float bally, float speedX, float speedY) 
+  void update(int X, int Y, float ballx, float bally, float speedY) 
   {
-    for (int i = gameObjects.size ()-1; i>=0; i--)
-    {
-      GameObject ball = gameObjects.get(i);
+    
+//    for (int i = gameObjects.size ()-1; i>=0; i--)
+//    {
+//      GameObject ball = gameObjects.get(i);
+//
+//      if (ball instanceof Ball)
+//      {
+//        for (int j = gameObjects.size ()-1; j>=0; j--)
+//        {
+//          GameObject brick = gameObjects.get(j);
+//
+//          if (brick instanceof Brick)
+//          {
+//            //if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+//            if ((ballx > mouseX) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+//            {
+//              speedY= -(speedY);
+//              //gameObjects.remove(brick);
+//            }
+//          }//end if
+//        }//end for
+//      }//end if
+//    }//end for
 
-      if (ball instanceof Ball)
-      {
-        for (int j = gameObjects.size ()-1; j>=0; j--)
-        {
-          GameObject brick = gameObjects.get(j);
-
-          if (brick instanceof Brick)
-          {
-            //if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
-            if ((ballx > mouseX) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
-            {
-              speedY= -(speedY);
-              //gameObjects.remove(brick);
-            }
-          }//end if
-          x+=speedX;
-          y+=speedY;
-        }//end for
-      }//end if
-    }//end for
   }
 
   void move(int X, int Y) 
@@ -63,7 +63,7 @@ class Ball extends GameObject
     x=X;
     y= Y;
     speedX= random(-10, 10);
-    speedY= speedY*-1;
+    speedY= speedY;
   }
 
   //this does the bounce
@@ -78,7 +78,7 @@ class Ball extends GameObject
     } 
     if (y>height-w/2) 
     { 
-      speedY= speedY * -1;
+      this.speedY= this.speedY * -1;
       return true;
     } else if (y<w/2)
     {
@@ -89,6 +89,8 @@ class Ball extends GameObject
 
   void draw(int X, int Y, float ballx, float bally, float speed)
   {
+    x+=speedX;
+    y+=speedY;
   }
 }
 

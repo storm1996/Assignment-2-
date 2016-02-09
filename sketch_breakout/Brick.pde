@@ -16,7 +16,7 @@ class Brick extends GameObject
     this.h = paddle_height;
   }
 
-  void update(int X, int Y, float ballx, float bally, float speedX, float speedY)
+  void update(int X, int Y, float ballx, float bally, float speedY)
   { 
     //x = X-w/2;
     if ( (ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ) )
@@ -41,28 +41,30 @@ class Brick extends GameObject
   }
   void draw(int X, int Y, float ballx, float bally, float speedY)
   {
+    System.out.print("hi");
     
-//    for (int i = gameObjects.size ()-1; i>=0; i--)
-//    {
-//      GameObject ball = gameObjects.get(i);
-//
-//      if (ball instanceof Ball)
-//      {
-//        for (int j = gameObjects.size ()-1; j>=0; j--)
-//        {
-//          GameObject brick = gameObjects.get(j);
-//
-//          if (brick instanceof Brick)
-//          {
-//            if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
-//            {
-//             // speedY= speedY * -1;
-//              gameObjects.remove(brick);
-//            }
-//          }//end if
-//        }//end for
-//      }//end if
-//    }//end for
-//  }
-}
+    for (int i = gameObjects.size ()-1; i>=0; i--)
+    {
+      GameObject ball = gameObjects.get(i);
+
+      if (ball instanceof Ball)
+      {
+        for (int j = gameObjects.size ()-1; j>=0; j--)
+        {
+          GameObject brick = gameObjects.get(j);
+
+          if (brick instanceof Brick)
+          {
+            if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+            {
+             ball.speedY=  ball.speedY*-1;
+             brick.x = 5000000;
+             System.out.println("hit----------------------------");
+             System.out.println("\nDone" + ball.speedY);
+            }
+          }//end if
+        }//end for
+      }//end if
+    }//end for
+  }
 }

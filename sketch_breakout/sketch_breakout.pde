@@ -15,6 +15,10 @@ int lives=3000;
 int option = 0;
 boolean run = false;
 
+//test variable
+
+
+
 int numberBlocks= 3;
 int numberOfBlockRows= 6;
 int blockWidth= (widthScreen-20)/numberBlocks;
@@ -47,7 +51,7 @@ void draw()
         for (int i = gameObjects.size () - 1; i >= 0; i --)
         {
           GameObject go = gameObjects.get(i);
-          println(gameObjects.get(i));
+          
           if (go instanceof Ball)
           {
             if (go.wallCollision()) 
@@ -78,9 +82,10 @@ void draw()
 
               if (brick instanceof Brick)
               {
-                ball.update(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedX, ball.speedY);
+                ball.update(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
                 ball.render();
                 ball.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
+                brick.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
               }//brick if
             }//end for j
           }//end go
