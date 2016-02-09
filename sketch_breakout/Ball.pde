@@ -2,14 +2,15 @@ class Ball extends GameObject
 {
   color ballColour;
   float speedX;
-  
-   Ball()
+  float speedY;
+
+  Ball()
   {
     super(widthScreen/2, heightScreen-50, 50, 50, 0);
   }
 
   //constructor
-  Ball(float x, float y, int Width, int Height, color Colour, float speedY, float speedX)
+  Ball(float x, float y, int Width, int Height, color Colour, float speedX, float speedY)
   {
     super(widthScreen/2, heightScreen-50, 50, 50, 0); 
     this.ballColour = Colour; 
@@ -19,7 +20,6 @@ class Ball extends GameObject
     this.h = Height;
     this.speedY = speedY;
     this.speedX = speedX;
-    
   }
   //this draws the ball on the screen
   void render()
@@ -32,8 +32,7 @@ class Ball extends GameObject
   //this changes the ball to the speed;
   void update(int X, int Y, float ballx, float bally, float speedY) 
   {
-    x+=speedX;
-    y+=speedY;
+    
   }
 
   void move(int X, int Y) 
@@ -45,9 +44,8 @@ class Ball extends GameObject
   }
 
   //this does the bounce
-  int wallCollision() 
+  boolean wallCollision() 
   {
-    int var = 1;
     if (x>width-w/2) 
     {
       speedX= speedX * -1;
@@ -58,11 +56,18 @@ class Ball extends GameObject
     if (y>height-w/2) 
     { 
       speedY= speedY * -1;
-      return var = 1;
+      return true;
     } else if (y<w/2)
     {
       speedY=speedY * -1;
     }
-    return var = 0;
+    return false;
+  }
+
+  void draw(int X, int Y, float ballx, float bally, float speed)
+  {
+    x+=speedX;
+    y+=speedY;
   }
 }
+

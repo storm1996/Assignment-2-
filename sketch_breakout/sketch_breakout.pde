@@ -3,7 +3,7 @@ void setup()
   size(500, 500);
   Brick paddle= new Brick(widthScreen/2, heightScreen - 50, 100, 10, color(215, 14, 195));
   gameObjects.add(paddle);
-  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), 0, random(1, 10));
+  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), random(-10, 10), random(1, 10));
   gameObjects.add(gameBall);
   setupBlocks();
 }
@@ -11,7 +11,7 @@ void setup()
 int widthScreen= 500;
 int heightScreen= 500;
 int score=0;
-int lives=3;
+int lives=3000;
 int option = 0;
 boolean run = false;
 
@@ -44,43 +44,58 @@ void draw()
     {
       if (lives>0) 
       {
-        drawBall(); 
         for (int i = gameObjects.size () - 1; i >= 0; i --)
         {
           GameObject go = gameObjects.get(i);
+          println(gameObjects.get(i));
           if (go instanceof Ball)
           {
             go.render();
-            go.update(mouseX, heightScreen - 50, go.x, go.y, go.speedY);
+            go.draw(mouseX, heightScreen - 50, go.x, go.y, go.speedY);
+            //checkCollisions();
+            if (go.wallCollision()) 
+            {
+              lives--;
+              go.move(width/2, height/2);
+            }
           }//end if
-        }//end for
-        checkCollisions();
-      } //end if 
+          if (go instanceof Block)
+          {
+            go.render();
+            go.draw(mouseX, heightScreen - 50, 0, 0, 0);
+          }//end if
+          if (go instanceof Brick)
+          {
+            go.render();
+          }//end if
+        }//end first for
+
+          for (int i = gameObjects.size () - 1; i >= 0; i --)
+        {
+          GameObject ball = gameObjects.get(i);
+          if (ball instanceof Ball)
+          {
+            for (int j = gameObjects.size ()-1; j>=0; j--)
+            {
+              GameObject brick = gameObjects.get(j);
+
+              if (brick instanceof Brick)
+              {
+                brick.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
+              }//brick if
+            }//end for j
+          }//end go
+        }//end second for
+      }//end if lives
       else 
       {
         drawLose();
-      }//end else
-    }//end if
-  }//end else
-}//end draw
-
-//draw the ball
-void drawBall() 
-{ 
-  for (int i = gameObjects.size () - 1; i >= 0; i --)
-  {
-    GameObject go = gameObjects.get(i);
-    if (go instanceof Ball)
-    {
-      if (go.wallCollision() == 0) 
-      {
-        lives--;
-        go.move(width/2, height/2);
       }
-    }
-  }
-}
-//
+    }//end if run
+  }//end big else
+}//end draw 
+
+
 void drawLose() 
 {
   fill(0);
@@ -104,58 +119,34 @@ void setupBlocks()
 
 void keyPressed() // Contains all the controls
 {
-    for (int i = gameObjects.size () - 1; i >= 0; i --)
+  for (int i = gameObjects.size () - 1; i >= 0; i --)
   {
     GameObject go = gameObjects.get(i);
     if (key == '1' && option==0)
     {
       option = 1;
-      go.speedY = 7;
+      //go.speedY = 7;
       run = true;
     }//end if
-  
+
     if (key == '2' && option==0)
     {
       option = 2;
-     go.speedY = 5;
+      //go.speedY = 5;
       run = true;
     }//end if
-  
+
     if (key == '3' && option==0)
     {
       option = 3;
-      go.speedY = 3;
+      //go.speedY = 3;
       run = true;
     }//end if
-  
+
     if (key == 'm')
     {
-     option = 0;
+      option = 0;
     }//end if
   }
-}
-
-void checkCollisions()
-{
-  for (int i = gameObjects.size ()-1; i>=0; i--)
-  {
-    GameObject ball = gameObjects.get(i);
-
-    if (ball instanceof Ball)
-    {
-      for (int j = gameObjects.size ()-1; j>=0; j--)
-      {
-        GameObject block = gameObjects.get(j);
-
-        if (block instanceof Block)
-        {
-          if (ball.x > block.x && ball.x<block.x + block.w && ball.y + 40> block.y && ball.y + 40 < block.y + block.h)
-          {
-            gameObjects.remove(i);
-          }
-        }//end if
-      }//end for
-    }//end if
-  }//end for
 }
 

@@ -18,6 +18,7 @@ abstract class GameObject
 
   abstract void update(int X, int Y, float ballx, float bally, float speedY);  
   abstract void render();
-  abstract int wallCollision();
+  abstract boolean wallCollision();
   abstract void move(int W, int H);
+  abstract void draw(int X, int Y, float ballx, float bally, float speedY);
 }

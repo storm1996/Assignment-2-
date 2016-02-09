@@ -28,16 +28,41 @@ class Brick extends GameObject
   {
     noStroke();
     fill(paddle_Colour);
-    rect(x, y, w, h);
+    rect(mouseX, y, w, h);
   }
-  
+
   void move(int W, int H)
-{
+  {
+  }
+
+  boolean wallCollision()
+  {
+    return true;
+  }
+  void draw(int X, int Y, float ballx, float bally, float speedY)
+  {
+    
+    for (int i = gameObjects.size ()-1; i>=0; i--)
+    {
+      GameObject ball = gameObjects.get(i);
+
+      if (ball instanceof Ball)
+      {
+        for (int j = gameObjects.size ()-1; j>=0; j--)
+        {
+          GameObject brick = gameObjects.get(j);
+
+          if (brick instanceof Brick)
+          {
+            brick.x = X-w/2;
+            if (ballx > brick.x && ballx<brick.x + brick.w && bally + 40> brick.y && bally + 40 < brick.y + brick.h)
+            {
+              speedY= speedY * -1;
+            }
+          }//end if
+        }//end for
+      }//end if
+    }//end for
+  }
 }
 
-int wallCollision()
-{
-  int y;
-  return  y = 3;
-}
-}
