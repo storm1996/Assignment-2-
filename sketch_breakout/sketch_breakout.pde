@@ -63,7 +63,6 @@ void draw()
     textAlign(CENTER);
     fill(255, 0, 100);
     text("Click 3 for Hard ", width/2, height/2+200);
-    
   } else
   {
     if (run = true);
@@ -118,92 +117,99 @@ void draw()
           }//end go
         }//end second for
       }//end if lives
-      for (int i = gameObjects.size()-1; i>=0; i--)
-    {
-      if( gameObjects.size() < 3)
+      for (int i = gameObjects.size ()-1; i>=0; i--)
       {
-        drawWin();
+        if ( gameObjects.size() < 3)
+        {
+          drawWin();
+          for (int j = gameObjects.size () - 1; j >= 0; j --)
+          {
+            GameObject ball= gameObjects.get(j);
+            if(ball instanceof Ball)
+            {
+              gameObjects.remove(ball);
+            }
+          }
+        }
       }
-    
-    }
-    if (lives == 0) 
-      {
-        drawLose();
-      }
-    }//end if run
- }//end big else
-}//end draw 
+        if (lives == 0) 
+        {
+          drawLose();
+        }
+      }//end if run
+    }//end big else
+  }//end draw 
 
 
-void drawLose() 
-{
-  fill(0);
-  textSize(40);
-  text("You lose!", width/2-100, height/2);
-}
-
-void drawWin() 
-{
-  background(255);
-  fill(0);
-  textSize(40);
-  text("You Win!", width/2-100, height/2);
-}
-
-
-void setupBlocks() 
-{
-  for (int i=0; i<numberBlocks; i++) 
+  void drawLose() 
   {
-    for (int j=0; j<numberOfBlockRows; j++) 
+    fill(0);
+    textSize(40);
+    text("You lose!", width/2-100, height/2);
+  }
+
+  void drawWin() 
+  {
+    background(255);
+    fill(0);
+    textSize(40);
+    text("You Win!", width/2-100, height/2);
+  }
+
+
+  void setupBlocks() 
+  {
+    for (int i=0; i<numberBlocks; i++) 
     {
-      blockX = i*(blockWidth+10);
-      blockY = 20+j*(blockHeight+10);
-      Block b = new Block(blockX, blockY, blockWidth, blockHeight, blockColours[j]);
-      gameObjects.add(b);
+      for (int j=0; j<numberOfBlockRows; j++) 
+      {
+        blockX = i*(blockWidth+10);
+        blockY = 20+j*(blockHeight+10);
+        Block b = new Block(blockX, blockY, blockWidth, blockHeight, blockColours[j]);
+        gameObjects.add(b);
+      }
     }
   }
-}
 
-void keyPressed() // Contains all the controls
-{
-  for (int i = gameObjects.size () - 1; i >= 0; i --)
+  void keyPressed() // Contains all the controls
   {
-    GameObject go = gameObjects.get(i);
-    if (key == '1' && option==0)
+    for (int i = gameObjects.size () - 1; i >= 0; i --)
     {
-      option = 1;
-      //go.speedY = 7;
-      run = true;
-    }//end if
+      GameObject go = gameObjects.get(i);
+      if (key == '1' && option==0)
+      {
+        option = 1;
+        //go.speedY = 7;
+        run = true;
+      }//end if
 
-    if (key == '2' && option==0)
-    {
-      option = 2;
-      //go.speedY = 5;
-      run = true;
-    }//end if
+      if (key == '2' && option==0)
+      {
+        option = 2;
+        //go.speedY = 5;
+        run = true;
+      }//end if
 
-    if (key == '3' && option==0)
-    {
-      option = 3;
-      //go.speedY = 3;
-      run = true;
-    }//end if
+      if (key == '3' && option==0)
+      {
+        option = 3;
+        //go.speedY = 3;
+        run = true;
+      }//end if
 
-    if (key == 'm')
-    {
-      option = 0;
-      restart();
-    }//end if
+      if (key == 'm')
+      {
+        option = 0;
+        restart();
+      }//end if
+    }
   }
-}
 
-void restart()
-{
-  int score=0;
-  int lives=7;
-  boolean run = false;
-  setupBlocks();
-}
+  void restart()
+  {
+    int score=0;
+    int lives=7;
+    boolean run = false;
+    setupBlocks();
+  }
 
