@@ -19,10 +19,11 @@ class Brick extends GameObject
   void update(int X, int Y, float ballx, float bally, float speedY)
   { 
     //x = X-w/2;
-    if ( (ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ) )
-    {
-      speedY= speedY * -1;
-    }
+    //if ( (ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) /*&& (bally < heightScreen - 39 )*/ )
+    //{
+    //  speedY= speedY * -1;
+      
+    //}
   }
   void render()
   {
@@ -41,7 +42,7 @@ class Brick extends GameObject
   }
   void draw(int X, int Y, float ballx, float bally, float speedY)
   {
-    System.out.print("hi");
+    //System.out.print("hi");
     
     for (int i = gameObjects.size ()-1; i>=0; i--)
     {
@@ -55,10 +56,11 @@ class Brick extends GameObject
 
           if (brick instanceof Brick)
           {
-            if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
+            if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52))
             {
-             ball.speedY=  ball.speedY*-1;
+             //ball.speedY=  ball.speedY*-1; 
              brick.x = 5000000;
+             //ball.y = heightScreen - (50 + (w/2));
              System.out.println("hit----------------------------");
              System.out.println("\nDone" + ball.speedY);
             }

@@ -20,6 +20,7 @@ class Ball extends GameObject
     this.h = Height;
     this.speedY = speedY;
     this.speedX = speedX;
+    //this.speedX = 0;
   }
   //this draws the ball on the screen
   void render()
@@ -60,10 +61,8 @@ class Ball extends GameObject
 
   void move(int X, int Y) 
   {
-    x=X;
-    y= Y;
-    speedX= random(-10, 10);
-    speedY= speedY;
+    x = X;
+    y = Y;
   }
 
   //this does the bounce
@@ -78,11 +77,16 @@ class Ball extends GameObject
     } 
     if (y>height-w/2) 
     { 
-      this.speedY= this.speedY * -1;
+      //speedY *= -1;
       return true;
     } else if (y<w/2)
     {
-      speedY=speedY * -1;
+      speedY *= -1;
+    } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2))))//ITS HERE ARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AAR
+    {
+     speedY *= -1;
+     y = heightScreen - (50 + (w/2));
+     println("I hit the paddle!");
     }
     return false;
   }
@@ -93,4 +97,3 @@ class Ball extends GameObject
     y+=speedY;
   }
 }
-
