@@ -30,12 +30,6 @@ class Ball extends GameObject
     ellipse(x, y, w, h);
   }
 
-  //this changes the ball to the speed;
-  void update(int X, int Y, float ballx, float bally, float speedY) 
-  {
-
-  }
-
   void move(int X, int Y) 
   {
     x = X;
@@ -51,8 +45,7 @@ class Ball extends GameObject
     } else if (x<w/2) 
     {
       speedX= speedX * -1;
-    } 
-    else if (y>height-w/2) 
+    } else if (y>height-w/2) 
     { 
       //speedY *= -1;
       return true;
@@ -61,9 +54,8 @@ class Ball extends GameObject
       speedY *= -1;
     } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2))))
     {
-     speedY *= -1;
-     y = heightScreen - (50 + (w/2));
-     println("I hit the paddle!");
+      speedY *= -1;
+      println("I hit the paddle!");
     }
     for (int i = gameObjects.size ()-1; i>=0; i--)
     {
@@ -76,12 +68,13 @@ class Ball extends GameObject
           GameObject block = gameObjects.get(j);
 
           if (block instanceof Block)
-         {
-           if ((ball.x > block.x) && (ball.x < block.x+blockWidth) && ( ball.y < block.y +blockHeight + 30))
-           {
-             gameObjects.remove(block);
-             speedY *= -1;
-           }
+          {
+            if ((ball.x > block.x) && (ball.x < block.x+blockWidth) && ( ball.y < block.y +blockHeight + 30))
+            {
+              gameObjects.remove(block);
+              score = score +5;
+              speedY *= -1;
+            }
           }//end if
         }//end for
       }//end if
@@ -95,3 +88,4 @@ class Ball extends GameObject
     y+=speedY;
   }
 }
+
