@@ -144,6 +144,7 @@ void drawLose()
 
 void drawWin() 
 {
+  background(255);
   fill(0);
   textSize(40);
   text("You Win!", width/2-100, height/2);
