@@ -3,7 +3,7 @@ void setup()
   size(500, 500);
   Brick paddle= new Brick(widthScreen/2, heightScreen - 50, 100, 10, color(215, 14, 195));
   gameObjects.add(paddle);
-  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), random(-10, 10), random(1, 10));
+  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), random(1, 10), random(1, 10));
   gameObjects.add(gameBall);
   setupBlocks();
 }
@@ -11,7 +11,7 @@ void setup()
 int widthScreen= 500;
 int heightScreen= 500;
 int score=0;
-int lives=3000;
+int lives=30;
 int option = 0;
 boolean run = false;
 

@@ -33,29 +33,6 @@ class Ball extends GameObject
   //this changes the ball to the speed;
   void update(int X, int Y, float ballx, float bally, float speedY) 
   {
-    
-//    for (int i = gameObjects.size ()-1; i>=0; i--)
-//    {
-//      GameObject ball = gameObjects.get(i);
-//
-//      if (ball instanceof Ball)
-//      {
-//        for (int j = gameObjects.size ()-1; j>=0; j--)
-//        {
-//          GameObject brick = gameObjects.get(j);
-//
-//          if (brick instanceof Brick)
-//          {
-//            //if ((ballx > mouseX -w) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
-//            if ((ballx > mouseX) && (ballx < mouseX + w) && (bally > heightScreen - 52) && (bally < heightScreen - 39 ))
-//            {
-//              speedY= -(speedY);
-//              //gameObjects.remove(brick);
-//            }
-//          }//end if
-//        }//end for
-//      }//end if
-//    }//end for
 
   }
 
@@ -75,19 +52,40 @@ class Ball extends GameObject
     {
       speedX= speedX * -1;
     } 
-    if (y>height-w/2) 
+    else if (y>height-w/2) 
     { 
       //speedY *= -1;
       return true;
     } else if (y<w/2)
     {
       speedY *= -1;
-    } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2))))//ITS HERE ARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AARONITS HERE AAR
+    } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2))))
     {
      speedY *= -1;
      y = heightScreen - (50 + (w/2));
      println("I hit the paddle!");
     }
+    for (int i = gameObjects.size ()-1; i>=0; i--)
+    {
+      GameObject ball = gameObjects.get(i);
+
+      if (ball instanceof Ball)
+      {
+        for (int j = gameObjects.size ()-1; j>=0; j--)
+        {
+          GameObject block = gameObjects.get(j);
+
+          if (block instanceof Block)
+         {
+           if ((ball.x > block.x) && (ball.x < block.x+blockWidth) && ( ball.y < block.y +blockHeight + 30))
+           {
+             gameObjects.remove(block);
+             speedY *= -1;
+           }
+          }//end if
+        }//end for
+      }//end if
+    }//end for
     return false;
   }
 
