@@ -20,12 +20,12 @@ class Block extends GameObject
   {
     if (x+w>width)
     {
-      x=width-w-30;
+      x=width-w-30; //keep blocks drawn on the screen 
     } 
 
     noStroke();
     fill(block_Colour);
-    rect(x, y, w, h);
+    rect(x, y, w, h); //draw block 
   }
 
 
@@ -35,7 +35,7 @@ void move(int W, int H)
 
 boolean wallCollision()
 {
-  return true;
+ return true;
 }
 
 void draw(int X, int Y, float ballx, float bally, float speedY)

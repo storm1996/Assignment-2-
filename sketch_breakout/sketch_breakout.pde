@@ -1,12 +1,13 @@
+//C14449168 Assignment 2
 void setup() 
 {
   size(500, 500);
   zigBlack = createFont("Century Schoolbook L Bold", 40);
-  Brick paddle= new Brick(widthScreen/2, heightScreen - 50, 100, 10, color(215, 14, 195));
+  Brick paddle= new Brick(widthScreen/2, heightScreen - 50, 100, 10, color(215, 14, 195)); //reads in values for the variables that make paddle 
   gameObjects.add(paddle);
-  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), random(1, 10), random(1, 10));
-  gameObjects.add(gameBall);
-  setupBlocks();
+  Ball gameBall= new Ball(widthScreen/2, heightScreen/2, 20, 20, color(255, 0, 0), random(1, 10), random(1, 10)); //reads in values for the variables that make ball 
+  gameObjects.add(gameBall); 
+  setupBlocks();// draws up the blocks and reads in variables to the brick class 
 }
 //Made a variable for screen width for help with ball 
 int widthScreen= 500;
@@ -18,7 +19,7 @@ int option = 0;
 boolean run = false;
 PFont zigBlack;
 
-//test variable
+//variables for blocks 
 int numberBlocks= 3;
 int numberOfBlockRows= 6;
 int blockWidth= (widthScreen-20)/numberBlocks;
@@ -37,7 +38,7 @@ void draw()
 {
   background(255);
 
-  if (option == 0)
+  if (option == 0) // drawing the main menu 
   {
     fill(255, 0, 0);
     textFont(zigBlack);
@@ -66,42 +67,41 @@ void draw()
     text("Click 3 for Hard ", width/2, height/2+200);
   } else
   {
-    if (run = true);
+    if (run = true); // when mode selected 
     {
       textSize(20);
       textAlign(LEFT);
-      fill(255, 0, 0);
+      fill(255, 0, 0); //display number of lives 
       text("Lives", 0+10, height-20);
       text(lives, 0+70, height-20);
 
       textSize(20);
       textAlign(RIGHT);
-      fill(255, 0, 0);
+      fill(255, 0, 0); // display current score 
       text("Score", width-50, height-20);
       text(score, width - 20, height-20);
 
-      if (lives>0) 
+      if (lives>0) // as long as you're still alive and playing 
       {
         for (int i = gameObjects.size () - 1; i >= 0; i --)
         {
           GameObject go = gameObjects.get(i);
 
-          if (go instanceof Ball)
+          if (go instanceof Ball) // 
           {
-            if (go.wallCollision()) 
+            if (go.wallCollision()) // method used for ball collision with walls, bricks and paddles 
             {
               lives--;
-              go.move(width/2, height/2);
+              go.move(width/2, height/2); // go back to start position 
             }
           }//end if
           if (go instanceof Block)
           {
-            go.render();
-            go.draw(mouseX, heightScreen - 50, 0, 0, 0);
+            go.render(); // draw the blocks 
           }//end if
           if (go instanceof Brick)
           {
-            go.render();
+            go.render(); //draw the paddle 
           }//end if
         }//end first for
 
@@ -116,9 +116,8 @@ void draw()
 
               if (brick instanceof Brick)
               {
-                ball.render();
-                ball.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
-                //brick.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY);
+                ball.render(); // draw ball 
+                ball.draw(mouseX, heightScreen - 50, ball.x, ball.y, ball.speedY); // ball moving around screen 
               }//brick if
             }//end for j
           }//end go
@@ -126,18 +125,18 @@ void draw()
       }//end if lives
       for (int i = gameObjects.size ()-1; i>=0; i--)
       {
-        if ( gameObjects.size() < 3)
+        if ( gameObjects.size() < 3) // if all blocks have been deleted 
         {
-          drawWin();
-          loadStats();
-          int number2 = Integer.parseInt(score1);
+          drawWin(); // you won 
+          loadStats(); // highscore loaded 
+          int number2 = Integer.parseInt(score1); // string from file changed to int 
           textAlign(CENTER);
           text("Highscore", width/2, (height/10)*2);
-          text(score1, width/2, (height/10)*2+40);
-          if (score > number2)
+          text(score1, width/2, (height/10)*2+40); // display highscore 
+          if (score > number2) // if you beat highscore 
           {
             number2 = score;
-            String b = str(number2);
+            String b = str(number2); //overwrite the old score  
             String[] list = split(b, " ");
             saveStrings("record.txt", list);
           }
@@ -146,14 +145,14 @@ void draw()
             GameObject ball= gameObjects.get(j);
             if (ball instanceof Ball)
             {
-              gameObjects.remove(ball);
+              gameObjects.remove(ball); // stop the ball if you won so you don't just keep losing lives 
             }
           }
         }
       }
-      if (lives == 0) 
+      if (lives == 0) //if you lost 
       {
-        drawLose();
+        drawLose(); //same as winning
           loadStats();
           int number2 = Integer.parseInt(score1);
           text("Highscore", width/2, (height/10)*2);
@@ -189,7 +188,7 @@ void drawWin()
 }
 
 
-void setupBlocks() 
+void setupBlocks() //reading in the parameters for the blocks 
 {
   for (int i=0; i<numberBlocks; i++) 
   {
@@ -203,7 +202,7 @@ void setupBlocks()
   }
 }
 
-void keyPressed() // Contains all the controls
+void keyPressed() // Contains all the controls for menu 
 {
   for (int i = gameObjects.size () - 1; i >= 0; i --)
   {
@@ -227,12 +226,12 @@ void keyPressed() // Contains all the controls
     }//end if
   }//end
 }
-  void loadStats()
+  void loadStats() // 
 {
   String[] lines = loadStrings("record.txt");
-  for (String line : lines) //convert .csv file to string 
+  for (String line : lines) //convert .txt file to string 
   {
-     score1=(line); //put into the class
+     score1=(line); 
   }
 
 }

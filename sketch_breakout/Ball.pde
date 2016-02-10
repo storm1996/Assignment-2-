@@ -20,7 +20,6 @@ class Ball extends GameObject
     this.h = Height;
     this.speedY = speedY;
     this.speedX = speedX;
-    //this.speedX = 0;
   }
   //this draws the ball on the screen
   void render()
@@ -30,7 +29,7 @@ class Ball extends GameObject
     ellipse(x, y, w, h);
   }
 
-  void move(int X, int Y) 
+  void move(int X, int Y) //move back to start position 
   {
     x = X;
     y = Y;
@@ -41,18 +40,18 @@ class Ball extends GameObject
   {
     if (x>width-w/2) 
     {
-      speedX= speedX * -1;
+      speedX= speedX * -1; //bounce if you hit the side walls
     } else if (x<w/2) 
     {
       speedX= speedX * -1;
-    } else if (y>height-w/2) 
+    } else if (y>height-w/2)  //bounce if you hit the bottom  wall
     { 
       //speedY *= -1;
       return true;
-    } else if (y<w/2)
+    } else if (x<w/2)
     {
       speedY *= -1;
-    } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2))))
+    } else if ((x > mouseX) && (x < mouseX + 100) && (y > height - (50 + (w/2)))) //hit paddle 
     {
       speedY *= -1;
       println("I hit the paddle!");
@@ -69,10 +68,10 @@ class Ball extends GameObject
 
           if (block instanceof Block)
           {
-            if ((ball.x > block.x) && (ball.x < block.x+blockWidth) && ( ball.y < block.y +blockHeight + 30))
+            if ((ball.x > block.x) && (ball.x < block.x+blockWidth) && ( ball.y < block.y +blockHeight + 30)) //if ball hits block 
             {
               gameObjects.remove(block);
-              score = score +5;
+              score = score +5; // block dissappears, change direction and increse score 
               speedY *= -1;
             }
           }//end if
@@ -84,7 +83,7 @@ class Ball extends GameObject
 
   void draw(int X, int Y, float ballx, float bally, float speed)
   {
-    x+=speedX;
+    x+=speedX; //ball moving 
     y+=speedY;
   }
 }
